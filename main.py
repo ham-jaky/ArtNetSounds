@@ -15,10 +15,14 @@ import audioplayer
 
 
 sounds_activated = []
+SOUNDS_PATH = "sounds"
 
 
 def gen_json():
-    files = os.listdir("sounds")
+    os.makedirs(SOUNDS_PATH, exist_ok=True)
+    files = os.listdir(SOUNDS_PATH)
+    if len(files) == 0:
+        print(f"WARNING: folder '{SOUNDS_PATH}' is empty")
     with open("sounds.json", "w") as f:
         json.dump(files, f)
 
